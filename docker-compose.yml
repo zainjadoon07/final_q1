@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "4000:4000"
+    depends_on:
+      - auth-service
+      - patient-service
+      - doctor-service
+      - appointment-service
+    networks:
+      - app-network
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "4001:4001"
+    networks:
+      - app-network
+
+  patient-service:
+    build: ./patient-service
+    ports:
+      - "4002:4002"
+    networks:
+      - app-network
+
+  doctor-service:
+    build: ./doctor-service
+    ports:
+      - "4003:4003"
+    networks:
+      - app-network
+
+  appointment-service:
+    build: ./appointment-service
+    ports:
+      - "4004:4004"
+    depends_on:
+      - notification-service
+    networks:
+      - app-network
+
+  notification-service:
+    build: ./notification-service
+    ports:
+      - "4005:4005"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
