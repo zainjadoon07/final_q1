@@ -31,3 +31,4 @@ app.delete("/appointments/:id", (req, res) => {
 app.get("/health", (_, res) => res.send("Appointment OK"));
 
 app.listen(4004, () => console.log("Appointment Service on 4004"));
+
