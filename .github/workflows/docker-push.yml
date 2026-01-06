@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         service: [api-gateway, auth-service, patient-service, doctor-service, appointment-service, notification-service]
